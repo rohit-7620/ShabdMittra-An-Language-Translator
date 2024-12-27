@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShabdMittra - Language Translator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* General Body Style */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #333;
+      color: #f0f0f0;
+    }
+
+    /* Logo Size and Header */
+    .logo img {
+      width: 150px;
+      height: auto;
+    }
+    .logo h1 {
+      font-size: 2em;
+      color: #f4a261;
+    }
+
+    /* Slogan Box and Bullet Points Style */
+    .slogan-box {
+      background-color: #444;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .slogan {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #e76f51;
+      margin: 0;
+    }
+    .highlight {
+      color: #f4a261;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul li {
+      font-size: 1.1em;
+      margin: 8px 0;
+      padding-left: 30px;
+      position: relative;
+    }
+    ul li:before {
+      content: '•';
+      color: #333;
+      position: absolute;
+      left: 0;
+      font-size: 1.5em;
+    }
+
+    /* Contact Button Style */
+    .contact-btn {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .contact-btn:hover {
+      background-color: #e76f51;
+    }
+
+    /* Phone Number Button */
+    .phone-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    .phone-btn:hover {
+      background-color: #2a9d8f;
+    }
+    .phone-btn i {
+      margin-right: 10px;
+    }
+
+    /* YouTube Link Style */
+    .youtube-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #1a73e8;
+    }
+    .youtube-link a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .youtube-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsiveness for Slogans */
+    @media (max-width: 600px) {
+      .slogan {
+        font-size: 1em; /* Smaller font on smaller screens */
+      }
+      .logo h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo -->
+  <header>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="ShabdMittra Logo" />
+      <h1>ShabdMittra</h1>
+    </div>
+    <div class="header-buttons">
+      <button id="helpBtn">Help</button>
+      <button id="feedbackBtn">Feedback</button>
+    </div>
+  </header>
+
+  <!-- Slogans Section with Box -->
+  <section class="slogan-box">
+    <ul class="slogan">
+      <li>Unlock the power of <span class="highlight">Azure</span> languages - Support for all!</li>
+      <li>Our translator is <span class="highlight">Free</span> to use - No limits, just translation!</li>
+      <li>Write your text, select the language, and let the magic happen!</li>
+      <li>Making your web experience <span class="highlight">attractive</span> and multilingual.</li>
+    </ul>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <section class="translator-section">
+      <textarea id="sourceText" placeholder="Type text to translate..."></textarea>
+      <select id="targetLanguage"></select>
+      <button id="translateButton">Translate</button>
+      <textarea id="translatedText" readonly placeholder="Translated text appears here..."></textarea>
+    </section>
+  </main>
+
+  <!-- Footer with YouTube Link -->
+  <footer>
+    <p style="color: black;">&copy; 2024 ShabdMittra - Powered by Microsoft Translator API</p>
+    <div class="youtube-link">
+      <p>Learn more about Microsoft Azure</p>
+      <a href="https://www.youtube.com/c/MicrosoftAzure" target="_blank">Visit our YouTube Channel</a>
+    </div>
+  </footer>
+
+  <!-- Contact Button -->
+  <a href="mailto:rohit.salke.aids.2023@vpkbiet.org?subject=Contact%20from%20ShabdMittra" class="contact-btn">Contact Us</a>
+
+  <!-- Phone Number Button -->
+  <a href="tel:+917620156611" class="phone-btn">
+    <i class="fas fa-phone"></i> +91 7620156611
+  </a>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeHelp">&times;</span>
+      <h2>How to Use ShabdMittra</h2>
+      <p>1. Enter text in the source text box.</p>
+      <p>2. Select the target language for translation.</p>
+      <p>3. Click the "Translate" button to get the translated text.</p>
+      <p>If you need further assistance, feel free to give feedback!</p>
+    </div>
+  </div>
+
+  <!-- Feedback Modal -->
+  <div id="feedbackModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeFeedback">&times;</span>
+      <h2>Feedback</h2>
+      <form id="feedbackForm">
+        <textarea id="feedbackText" placeholder="Your feedback here..." required></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
